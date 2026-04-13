@@ -1,0 +1,6 @@
+#store them in .env file
+GROQ_API_KEY={Api key}
+RESUME_FILE_LOCATION={location}
+VECTOR_DB_NAME={vector_db_name}
+GROQ_MODEL={model used} #llama-3.3-70b-versatile
+SYSTEM_PROMPT_FILE_PATH={path}
