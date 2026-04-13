@@ -12,6 +12,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",   # Vite dev server
         "http://localhost:4173",   # Vite preview
+        "https://preetihegde-portfolio.pages.dev",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -19,4 +20,3 @@ app.add_middleware(
 )
 
 app.include_router(router, prefix="/api")
-logger.info("Application started successfully")

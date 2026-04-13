@@ -3,7 +3,7 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 
-from backend.src.retrival_service import retrieve_vector_data
+from backend.src.rest_service import retrieve_vector_data
 from backend.src.utility_service import get_groq_model_parameters, get_session_history, format_docs, get_file_paths, load_system_prompt
 
 
