@@ -5,10 +5,10 @@ import os
 
 from langchain_core.documents import Document
 
-from backend.src.ingestion_service import vectorize_cv
-from backend.src.rest_service import retrieve_vector_data
-from backend.src.utility_service import get_file_paths
-from backend.src.uttara_service import ask_question
+from src.ingestion_service import vectorize_cv
+from src.rest_service import retrieve_vector_data
+from src.utility_service import get_file_paths
+from src.uttara_service import ask_question
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
