@@ -21,3 +21,4 @@ transformers==5.5.1
 httpx==0.28.1
 httpx-sse==0.4.3
 chromadb==1.5.7
+uvicorn[standard]>=0.24.0

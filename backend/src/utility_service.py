@@ -25,9 +25,8 @@ def get_file_paths():
     # ✅ Paths (safe for Windows)
     working_dir = os.path.dirname(os.path.abspath(__file__))
     backend_dir = os.path.dirname(working_dir)
-    parent_dir = os.path.dirname(backend_dir)
-    data_dir = os.path.join(parent_dir, resume_data_path)
-    vector_db_path = os.path.join(parent_dir,vector_db_name)
+    data_dir = os.path.join(backend_dir, resume_data_path)
+    vector_db_path = os.path.join(backend_dir,vector_db_name)
     system_prompt_file_loc = os.path.join(backend_dir,system_prompt_file_path)
     return {
         "data_dir":data_dir,

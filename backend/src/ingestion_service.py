@@ -22,7 +22,7 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=300, chunk_overlap=100
 def vectorize_cv():
     all_docs = []
     for resume_data in os.listdir(data_dir):
-        if not resume_data.endswith(".pdf"):
+        if not resume_data.endswith((".pdf", ".txt")):
             continue
 
         each_file_path = os.path.join(data_dir, resume_data)
