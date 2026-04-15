@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.api.api_impl import router
+from api.api_impl import router
 import logging
 
 logger = logging.getLogger(__name__)
