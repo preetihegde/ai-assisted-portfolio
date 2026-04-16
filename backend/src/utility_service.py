@@ -7,6 +7,7 @@ from pathlib import Path
 
 load_dotenv()
 
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # In-memory session store
@@ -24,9 +25,13 @@ def format_docs(docs):
 
 
 def get_file_paths():
+    logger.info("getting FILE paths lets see ...")
     resume_data_path = os.getenv("RESUME_FILE_LOCATION")
+    logger.info(f"getting FILE RESUME_FILE_LOCATION {RESUME_FILE_LOCATION} from {resume_data_path} ...")
     vector_db_name = os.getenv("VECTOR_DB_NAME")
+    logger.info(f"getting FILE VECTOR_DB_NAME {VECTOR_DB_NAME} ...")
     system_prompt_file_path = os.getenv("SYSTEM_PROMPT_FILE_PATH")
+    logger.info(f"getting FILE SYSTEM_PROMPT_FILE_PATH {system_prompt_file_path} ...")
 
     # Validate required env vars
     missing = [k for k, v in {
@@ -43,8 +48,11 @@ def get_file_paths():
 
     # src/ → backend/ → repo root: go up two levels from src/
     working_dir = os.path.dirname(os.path.abspath(__file__))
+    logger.info(f"getting FILE working_dir {working_dir} ...")
     backend_dir = os.path.dirname(working_dir)
+    logger.info(f"getting FILE backend_dir {backend_dir} ...")
 
+    
     return {
         "data_dir": os.path.join(backend_dir, resume_data_path),
         "system_prompt_file_loc": os.path.join(backend_dir, system_prompt_file_path),
