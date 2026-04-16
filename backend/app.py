@@ -24,7 +24,7 @@ def health():
 # Import router AFTER app is created — avoids module-level crash
 # if any env var is missing at import time
 try:
-    from backend.api.api_impl import router
+    from api.api_impl import router
     app.include_router(router, prefix="/api")
     logger.info("✅ Router loaded successfully")
 except Exception as e:
