@@ -2,9 +2,20 @@ services:
   - type: web
     name: uttara-api
     runtime: python
-    rootDir: backend
-    buildCommand: "pip install -r requirements.txt"
+
+    # rootDir is REMOVED — we run from repo root so "from backend.api..." imports work
+    # Build runs from repo root
+    buildCommand: "pip install -r backend/requirements.txt"
+
+    # Port 10000 — hardcoded, NOT $PORT ($PORT is not shell-expanded in render.yaml)
     startCommand: "uvicorn app:app --host 0.0.0.0 --port 10000"
+
     envVars:
       - key: PYTHON_VERSION
         value: "3.11.4"
+      # Add these in Render Dashboard → Environment tab (never commit secrets):
+      # GROQ_API_KEY
+      # GROQ_MODEL            (e.g. llama-3.3-70b-versatile)
+      # RESUME_FILE_LOCATION  (e.g. data)
+      # VECTOR_DB_NAME        (e.g. cv_vector_db)
+      # SYSTEM_PROMPT_FILE_PATH (e.g. prompts/system_prompt.md)
