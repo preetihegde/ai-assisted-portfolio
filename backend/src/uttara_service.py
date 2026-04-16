@@ -4,19 +4,29 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 
 from src.rest_service import retrieve_vector_data
-from src.utility_service import get_groq_model_parameters, get_session_history, format_docs, get_file_paths, load_system_prompt
+from src.utility_service import (
+    get_groq_model_parameters,
+    get_session_history,
+    format_docs,
+    get_file_paths,
+    load_system_prompt
+)
 
+# ✅ cache DB
+_db = None
 
-# working_dir = os.path.dirname(os.path.abspath(__file__))
-# parent_dir = os.path.dirname(working_dir)
-
-# utility_service.py
+def get_db():
+    global _db
+    if _db is None:
+        file_paths = get_file_paths()
+        vector_db_path = file_paths['vector_db_path']
+        print("🔥 Loading vector DB once...")
+        _db = retrieve_vector_data(vector_db_path)
+    return _db
 
 
 def ask_question(question: str, session_id: str) -> str:
-    file_paths= get_file_paths()
-    vector_db_path = file_paths['vector_db_path']
-    retrieved_vector_data = retrieve_vector_data(vector_db_path)
+    retrieved_vector_data = get_db()   # ✅ use cached DB
     llm = get_groq_model_parameters()
 
     retriever = retrieved_vector_data.as_retriever(
@@ -24,16 +34,12 @@ def ask_question(question: str, session_id: str) -> str:
         search_kwargs={"k": 3}
     )
 
-
-
     prompt = ChatPromptTemplate.from_messages([
         ("system", load_system_prompt()),
         MessagesPlaceholder(variable_name="chat_history"),
         ("human", "{question}"),
     ])
 
-
-    # Core chain: retrieve → format → prompt → llm → parse
     chain = (
             {
                 "context": (lambda x: x["question"]) | retriever | format_docs,
@@ -45,7 +51,6 @@ def ask_question(question: str, session_id: str) -> str:
             | StrOutputParser()
     )
 
-    # Wrap with message history for session memory
     chain_with_history = RunnableWithMessageHistory(
         chain,
         get_session_history,

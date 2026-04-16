@@ -1,0 +1,515 @@
+============================================================
+UTTARA AI — KNOWLEDGE BASE FOR PREETI HEGDE
+Version: 2.0  |  Last updated: April 2025
+============================================================
+
+This file is the single source of truth for Uttara, Preeti's AI
+chatbot. It covers: identity, career, projects, skills, education,
+certifications, publications, personality, working style, and
+behavioral Q&A. Keep the tone warm, direct, and occasionally witty.
+
+------------------------------------------------------------
+SECTION 1 — IDENTITY & CONTACT
+------------------------------------------------------------
+
+Full name:        Preeti Venkataraman Hegde
+Preferred name:   Preeti Hegde
+Pronouns:         she/her
+Location:         Würzburg, Germany (open to relocate & remote)
+Email:            preetivhegde98@gmail.com
+LinkedIn:         https://www.linkedin.com/in/preetivhegde/
+GitHub:           https://github.com/preetihegde
+Medium:           https://medium.com/@preetivhegde
+Portfolio:        https://portfolio-preeti.lovable.app/
+Availability:     Actively looking for full-time roles (AI Engineer,
+                  Full-Stack AI Engineer, ML Engineer, Backend Engineer)
+
+One-liner:
+  AI Engineer specialising in Generative AI and backend systems, with
+  experience building production-grade RAG pipelines and scalable
+  microservices. Strong background in Python, Java, and cloud-native
+  architectures, focused on deploying reliable, high-performance AI
+  applications.
+
+------------------------------------------------------------
+SECTION 2 — PERSONALITY & WORKING STYLE
+------------------------------------------------------------
+
+Mindset:
+  - Curious, analytical, experimental — loves digging into "why"
+  - Enjoys exploring novel research directions with computational approaches
+  - Prefers working independently but thrives in collaborative teams
+  - User-focused: cares about whether the thing actually works for people
+  - Committed to clean code and proper documentation & runbooks
+
+What energises Preeti:
+  - Turning a research idea into something that runs in production
+  - Finding elegant solutions to messy real-world data problems
+  - Learning by building — not just reading papers
+  - Discussing AI architecture tradeoffs (could talk about RAG vs fine-tuning for hours)
+
+What drains Preeti:
+  - Ambiguous requirements with no feedback loop
+  - Shipping without tests (she writes them — don't worry)
+  - Meetings that could have been a Confluence page
+
+Working style:
+  - Async-friendly but enjoys syncs for architecture decisions
+  - Documents everything — runbooks, ADRs, readmes
+  - Thinks before she codes (diagrams things out first)
+  - Will ask "why are we building this?" before "how do we build this?"
+
+Fun / personal facts:
+  - Based in Würzburg, loves the wine region
+  - German is progressing towards C1 (currently B1 — brave enough to order coffee AND debug Stack Overflow errors in German)
+  - Open to relocate across Germany or go fully remote
+  - Has Arctic Code Vault Contributor badge on GitHub (her code is literally frozen in the Arctic for future generations — no pressure)
+
+------------------------------------------------------------
+SECTION 3 — WORK EXPERIENCE
+------------------------------------------------------------
+
+── ROLE 1 ──────────────────────────────────────────────────
+Title:      AI and Machine Learning Intern
+Company:    Chi2 Data Analytics and Artificial Intelligence GmbH
+Period:     November 2025 – January 2026
+Type:       Internship | Remote
+Focus area: Data Analysis and Predictive Modeling
+
+What she did:
+  • Analysed structured datasets using statistical inference and
+    predictive modeling on large real-world datasets (10K+ records),
+    enabling data-driven decision-making for research workflows
+  • Standardised preprocessing pipelines, improving reproducibility
+    and consistency across analytical processes
+  • Delivered end-to-end analyses independently, ensuring high accuracy
+    and reliability in production-like environments
+  • Implemented AI-driven workflows integrating statistical inference
+    with machine learning in Python, reducing analysis time and
+    enabling scalable data processing
+  • Created structured data visualisations and analytical summaries,
+    improving interpretability of complex datasets
+
+Tech used: Python, Machine Learning Models, Statistical Analysis,
+           Neural Networks, Clean Code practices
+
+── ROLE 2 ──────────────────────────────────────────────────
+Title:      Master Thesis — Machine Learning Engineer
+Company:    Technische Hochschule Würzburg-Schweinfurt (THWS)
+Period:     November 2024 – May 2025
+Type:       Full-time | Würzburg, Germany
+Focus area: Computer Vision and Deep Learning Systems
+
+What she did:
+  • Developed a multi-view ML pipeline for joint classification and
+    anomaly detection, achieving 96% accuracy and 0.85 AUROC
+  • Designed pipeline for efficient inspection of reusable containers
+    using data from five fixed camera angles in a reconditioning facility
+  • Optimised model architecture to reduce inference time, enabling
+    scalable inspection workflows
+  • Containerised the pipeline using Docker, ensuring reproducible and
+    production-ready deployment
+
+Tech used: Python, PyTorch, Computer Vision, CNN, Multi-view Learning,
+           Docker, PatchCore
+
+── ROLE 3 ──────────────────────────────────────────────────
+Title:      Software Engineer
+Company:    Altisource
+Period:     January 2021 – March 2023
+Type:       Full-time | Bengaluru, India
+Focus area: Backend and Scalable Systems Engineering
+
+What she did:
+  • Designed and deployed microservices handling high-volume transactional
+    data, ensuring >90% availability in distributed systems
+  • Built REST and SOAP APIs enabling real-time data exchange with internal
+    platforms and external vendor systems
+  • Redesigned workflows using multi-threaded Spring Batch architecture,
+    improving processing speed by 30% and overall system efficiency
+  • Led integrations across 5 business divisions, reducing system
+    dependencies and improving cross-functional collaboration
+  • Integrated Stripe payment systems using REST APIs and webhooks,
+    reducing failures by 40% and ensuring reliable transaction processing
+    with automated reconciliation
+  • Containerised and deployed services on AWS ECS/EKS using Docker,
+    improving scalability and fault tolerance
+  • Implemented CI/CD pipelines, accelerating release cycles by 30%
+  • Led debugging and optimisation efforts, reducing downtime by 25%
+  • Worked in an Agile/Scrum team environment
+
+Tech used: Java, Spring Boot, Flowable (BPMN), MySQL, Kafka, AWS
+           (ECS/EKS), Docker, REST APIs, SOAP, CI/CD, Scrum
+
+------------------------------------------------------------
+SECTION 4 — PROJECTS
+------------------------------------------------------------
+
+── PROJECT 1 ──────────────────────────────────────────────
+Name:    Uttara AI — AI-Powered Personal RAG Chatbot
+GitHub:  https://github.com/preetihegde/ai-assisted-portfolio
+Live:    https://uttara-api.onrender.com
+
+What it is:
+  An AI-powered conversational assistant embedded in Preeti's portfolio
+  that understands user queries, retrieves relevant information about
+  her career, and handles follow-up questions with context using a
+  Retrieval-Augmented Generation (RAG) pipeline.
+
+Why she built it:
+  To make her portfolio interactive — recruiters and collaborators can
+  ask natural questions instead of scrolling through pages. It improves
+  accessibility, reduces search effort, and makes exploration faster
+  and more intuitive.
+
+How it works:
+  • Uses a RAG pipeline — user question → semantic search over
+    Preeti's knowledge base → LLM generates a grounded answer
+  • Maintains conversation context across follow-up questions
+  • FastAPI backend deployed on Render, React/TypeScript frontend
+  • Named "Uttara" — a nod to a personal story
+
+Tech: Python, FastAPI, RAG, LangChain, Vector Databases, LLMs,
+      React, TypeScript, Render
+
+── PROJECT 2 ──────────────────────────────────────────────
+Name:    Production-Grade RAG Platform for Document Intelligence
+GitHub:  https://github.com/preetihegde (see repos)
+
+What it is:
+  An end-to-end Retrieval-Augmented Generation system for unstructured
+  data processing using LLMs — enterprise-scale document Q&A.
+
+Key technical work:
+  • Designed scalable ingestion pipelines with event-driven architecture,
+    retries, and observability
+  • Implemented semantic search using embeddings and vector databases
+    (Qdrant), improving retrieval accuracy
+  • Developed modular LLM orchestration enabling runtime model
+    selection and scalable deployment
+  • Built with LangChain, ChromaDB/Qdrant, FastAPI, Groq, Python
+
+Why it's interesting:
+  Goes beyond a demo — built with production concerns like retries,
+  observability, and modular model swapping built in from day one.
+
+Tech: LangChain, ChromaDB, Qdrant, FastAPI, Groq, Python,
+      Event-driven architecture
+
+── PROJECT 3 ──────────────────────────────────────────────
+Name:    Joint Image Classification & Anomaly Detection
+         (Master Thesis Project)
+GitHub:  https://github.com/preetihegde/Joint-Image-Classification-and-Anomaly-Detection-for-Efficient-Inspection-of-Reusable-Containers
+
+What it is:
+  A multi-view joint classification and anomaly detection pipeline for
+  efficient inspection of reusable containers in a reconditioning
+  facility, using data from five fixed camera angles.
+
+Results:
+  • 96% classification accuracy
+  • 0.85 AUROC for anomaly detection
+  • Reduced inference time through architectural optimisation
+
+Tech: Python, PyTorch, Computer Vision, CNN, Multi-view Learning,
+      PatchCore, Docker
+
+Thesis title (full):
+  "Joint Image Classification and Anomaly Detection for Efficient
+  Inspection of Reusable Containers"
+  Published: Technische Hochschule Würzburg-Schweinfurt, 2025
+
+── PROJECT 4 ──────────────────────────────────────────────
+Name:    SummariseIt — AI Text Summarisation Tool
+GitHub:  https://github.com/preetihegde (see repos)
+
+What it is:
+  A backend service integrating LLM APIs to generate structured summaries
+  from web content. Integrated with a Chrome extension for real-time use.
+
+Tech: Python, LLM APIs, REST APIs, Chrome Extension integration
+
+── PROJECT 5 ──────────────────────────────────────────────
+Name:    Predictive Analysis of Cloud Motion
+GitHub:  https://github.com/tharun-kumar-22/Cloud-Segmentation-and-Forecasting
+
+What it is:
+  A deep learning model combining CNNs and RNNs for accurate short-term
+  cloud motion prediction, enabling better solar energy forecasting.
+
+Tech: Python, CNN, RNN, TensorFlow, Time Series analysis
+
+── PROJECT 6 ──────────────────────────────────────────────
+Name:    Blackjack Q-Learning Agent
+GitHub:  https://github.com/preetihegde/Blackjack
+
+What it is:
+  Implementation of Blackjack using Q-Learning (Reinforcement Learning).
+  A fun side project exploring RL fundamentals.
+
+── PROJECT 7 ──────────────────────────────────────────────
+Name:    Semantic Data Processing
+GitHub:  https://github.com/preetihegde/Semantic-Data
+
+What it is:
+  Files and projects related to semantic data processing, primarily
+  with different language models.
+
+── PROJECT 8 ──────────────────────────────────────────────
+Name:    Feedback and Recommendation System using NLP
+         (Bachelor Thesis Project)
+
+What it is:
+  A feedback and recommendation system using Natural Language Processing.
+Authors: Sangeetha D R, Preeti V Hegde, Prerana N G, Manjunatha Kumar B H
+Published: June 2020
+Conference/Journal: Published academic paper
+
+------------------------------------------------------------
+SECTION 5 — TECHNICAL SKILLS
+------------------------------------------------------------
+
+AI & Machine Learning:
+  LLMs, Generative AI, RAG (Retrieval-Augmented Generation),
+  Transformer Architectures, LangChain, LangGraph, SentenceTransformers,
+  Computer Vision, NLP, Predictive Modeling, PyTorch, TensorFlow,
+  scikit-learn, Prompt Engineering, PatchCore, Deep Learning,
+  Neural Networks, Anomaly Detection
+
+Backend Engineering:
+  Java, Python, Spring Boot, FastAPI, REST APIs, SOAP APIs,
+  Microservices, Kafka, Event-Driven Architecture, Flowable (BPMN),
+  Spring Batch, Multi-threading
+
+Frontend:
+  React, TypeScript, Tailwind CSS, Vite
+
+Databases:
+  SQL, MySQL, PostgreSQL, Vector Databases (Qdrant, ChromaDB),
+  Semantic Search, Embeddings
+
+DevOps & Cloud:
+  AWS (ECS, EKS), Docker, CI/CD (Bamboo, GitHub Actions),
+  Data Pipelines, ETL, Microservices architecture
+
+Data Engineering:
+  Data Pipelines, ETL, Statistical Analysis, Data Visualisation,
+  Pandas, NumPy, Preprocessing pipelines
+
+Tools & Practices:
+  Git, Bitbucket, Maven, Postman, Jira, Confluence, Jupyter,
+  Agile/Scrum, Clean Code, Documentation, Runbooks
+
+Languages (human):
+  English (C1), German (B1, actively progressing to C1)
+
+------------------------------------------------------------
+SECTION 6 — EDUCATION
+------------------------------------------------------------
+
+── DEGREE 1 ────────────────────────────────────────────────
+Degree:      Master of Science — Artificial Intelligence
+University:  Technische Hochschule Würzburg-Schweinfurt (THWS)
+Period:      March 2023 – June 2025
+Location:    Würzburg, Germany
+
+Thesis: "Joint Image Classification and Anomaly Detection for
+         Efficient Inspection of Reusable Containers"
+Grade/result: 96% accuracy, 0.85 AUROC (key thesis metric)
+Focus areas: Deep Learning, Computer Vision, NLP, Predictive Modeling
+
+── DEGREE 2 ────────────────────────────────────────────────
+Degree:      Bachelor of Engineering — Computer Science and Engineering
+University:  Sri Siddhartha Institute of Technology
+Period:      August 2016 – June 2020
+Location:    Tumakuru, India
+
+Thesis: "Feedback and Recommendation System using Natural Language
+         Processing"
+Published as a paper in June 2020.
+
+------------------------------------------------------------
+SECTION 7 — CERTIFICATIONS
+------------------------------------------------------------
+
+1. LLM Foundations: Vector Databases for Caching and
+   Retrieval Augmented Generation (RAG)
+   Issuer: LinkedIn Learning | Date: December 2025 | Remote
+
+2. Model Context Protocol (MCP) for Beginners by Microsoft
+   Issuer: LinkedIn Learning | Date: December 2025 | Remote
+
+------------------------------------------------------------
+SECTION 8 — PUBLICATIONS
+------------------------------------------------------------
+
+Title:   "Feedback and Recommendation System using Natural Language
+          Processing"
+Authors: Sangeetha D R, Preeti V Hegde, Prerana N G,
+         Manjunatha Kumar B H
+Date:    June 2020
+
+------------------------------------------------------------
+SECTION 9 — WHAT PREETI IS LOOKING FOR
+------------------------------------------------------------
+
+Ideal roles:
+  - Full Stack AI Engineer
+  - AI Engineer / ML Engineer
+  - Backend Engineer with AI focus
+  - Founding Engineer at an AI-focused startup
+
+What matters to her in a role:
+  - Real AI/ML work — not just wrapping GPT with a chatbox
+  - Good engineering culture: code reviews, documentation, clean code
+  - Autonomy and ownership — she likes driving problems end-to-end
+  - Remote-friendly or Würzburg/Germany-based
+  - Team that ships things and learns together
+
+Open to:
+  - Fully remote (strongly preferred)
+  - Hybrid in Germany
+  - Relocation within Europe for the right role
+
+NOT looking for:
+  - Pure frontend roles
+  - Non-technical management positions
+  - Roles with no AI/ML component
+
+------------------------------------------------------------
+SECTION 10 — BEHAVIORAL QUESTIONS & ANSWERS
+(For common recruiter/interview questions — respond naturally)
+------------------------------------------------------------
+
+Q: Tell me about yourself.
+A: I'm a Full Stack AI Engineer based in Würzburg, Germany, with a
+   Master's in Artificial Intelligence from THWS. My background spans
+   both backend systems — built at Altisource using Java and Spring Boot —
+   and AI/ML engineering, including my thesis on multi-view computer
+   vision at 96% accuracy, and production RAG systems. I love the bridge
+   between rigorous engineering and intelligent systems — making AI not
+   just work on paper but actually run reliably in production.
+
+Q: Why AI / why now?
+A: I've always been drawn to how systems can learn and reason. During
+   my Master's I got to work on real computer vision problems with actual
+   production constraints — not just toy datasets. That experience of
+   turning research into something deployable made it clear this is the
+   work I want to do. And honestly, we're at the most interesting moment
+   in AI — the tooling is finally good enough that you can build things
+   that actually help people.
+
+Q: What's your biggest professional achievement?
+A: My Master's thesis — building a multi-view ML pipeline that achieved
+   96% accuracy and 0.85 AUROC for anomaly detection in industrial
+   containers. What made it meaningful wasn't just the numbers, it was
+   solving a real inspection problem for a production environment,
+   containerising it with Docker, and making sure it actually worked
+   outside a Jupyter notebook.
+
+Q: How do you approach a new technical problem?
+A: I start by understanding the "why" before the "how." I'll sketch out
+   the system diagram, identify the constraints (latency? data quality?
+   model size?), and then look for the simplest solution that actually
+   works. I document my thinking as I go — not just for others, but
+   because it forces clarity. Then I build iteratively and test early.
+
+Q: Describe a time you worked under pressure.
+A: During my thesis, I had a hard deadline and my initial model
+   architecture wasn't hitting the accuracy requirements. Instead of
+   panicking, I broke the problem down — is it data quality, model
+   capacity, or loss function? Turned out to be a combination of
+   imbalanced classes and a sub-optimal feature fusion approach.
+   Addressed both systematically and ultimately exceeded the target
+   metrics. The lesson: pressure is more manageable when you have a
+   structured debugging process.
+
+Q: How do you handle disagreement with a teammate?
+A: I try to understand their reasoning first — often there's context I
+   don't have. If I still disagree, I'll make my case with data or
+   concrete examples rather than opinion. And if we're still stuck,
+   I'm fine deferring to whoever has more context on that specific area,
+   or escalating for a third perspective. I'd rather ship something
+   slightly imperfect than spend a week arguing about it.
+
+Q: What's a failure you learned from?
+A: Early in my career at Altisource, I once pushed a fix without
+   fully understanding the downstream effects in a microservices chain.
+   It caused an incident. After that I became religious about: (1) tracing
+   the full call graph before any change, (2) writing proper integration
+   tests, and (3) doing staged rollouts. That incident made me a much
+   more careful engineer.
+
+Q: Where do you see yourself in 3-5 years?
+A: Leading AI engineering on products that genuinely change how people
+   work — not as a manager necessarily, but as a strong technical lead
+   who bridges the gap between research and production. I'd love to
+   have shipped something that a significant number of people use daily
+   and find genuinely useful.
+
+Q: Why should we hire you?
+A: Because I combine two things that rarely come together well: I can
+   build production-grade backend systems AND design and deploy AI
+   pipelines. I don't just prototype — I think about reliability,
+   observability, and maintainability from the start. And I'm genuinely
+   excited about this work, which means I'll keep getting better at it.
+
+Q: Are you open to relocation?
+A: Yes — open to relocate within Germany and open to fully remote roles
+   globally. Currently in Würzburg.
+
+Q: What's your notice period / when are you available?
+A: Available immediately / very soon. Not currently employed full-time.
+
+Q: Do you speak German?
+A: Yes, German B1 and actively working towards C1. Comfortable in
+   day-to-day professional settings. Technical discussions are fine
+   in both English and German.
+
+Q: What technologies are you most excited about right now?
+A: LangGraph for building stateful AI agents with real control flow,
+   MCP (Model Context Protocol) for standardising how AI models connect
+   to tools and data sources, and the emerging patterns around
+   production RAG — specifically hybrid retrieval and reranking. The
+   gap between "AI demo" and "AI product" is where the interesting
+   engineering work is.
+
+Q: What's your experience with RAG systems?
+A: Extensive — built two production RAG systems. I understand the full
+   pipeline: document ingestion → chunking strategy → embedding model
+   choice → vector store (Qdrant, ChromaDB) → retrieval (semantic +
+   optional keyword hybrid) → reranking → LLM generation with citations.
+   I've also dealt with the real challenges: hallucinations, retrieval
+   failures, context window management, and latency vs accuracy tradeoffs.
+
+Q: How do you keep up with AI?
+A: Mix of papers (arXiv, but selectively — I focus on things I can build
+   with), building side projects, LinkedIn for industry signals, and
+   my own Medium. The best way to understand something is to implement it.
+
+Q: Tell me about Uttara (this chatbot).
+A: Uttara is my AI assistant — built using a RAG pipeline so it can
+   answer specific questions about my career, projects, and background
+   accurately, rather than hallucinating. The backend is FastAPI on
+   Render, the knowledge base is a curated text file, and it maintains
+   conversation context across follow-ups. It's both a real tool and
+   a demonstration that I can build AI-powered products end-to-end.
+   Also — if a recruiter is talking to it right now, hello! 👋
+
+------------------------------------------------------------
+SECTION 11 — THINGS UTTARA SHOULD NOT DO
+------------------------------------------------------------
+
+- Share salary expectations (redirect to email)
+- Reveal private/personal details beyond what's in this file
+- Discuss or have opinions on other candidates
+- Claim to be human if directly asked
+- Make up experience or achievements not listed here
+- Answer unrelated questions (cooking recipes, news, etc.)
+  → Politely redirect: "I'm only trained on Preeti's professional
+    info — for that I'm extremely qualified. For everything else,
+    not so much 😄"
+
+------------------------------------------------------------
+END OF KNOWLEDGE BASE
+============================================================
