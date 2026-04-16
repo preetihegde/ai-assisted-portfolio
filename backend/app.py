@@ -15,16 +15,5 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ── Health check — Render pings this to confirm the app is alive ──
-@app.get("/health")
-def health():
-    return {"status": "ok"}
-
-# ── Your existing routes below ──
-# @app.post("/api/chat")
-# ...
-
-# ── Startup log — tells you the app actually initialised ──
-@app.on_event("startup")
-async def startup():
-    logger.info("✅ Uttara API started successfully")
+app.include_router(router, prefix="/api")
+log.info("running successfully...")
