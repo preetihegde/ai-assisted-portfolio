@@ -1,23 +1,30 @@
+import os
+import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from api.api_impl import router
-import logging
 
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-app = FastAPI(title="Uttara : Answering your questions Smartly")
-logger.log("App started..")
 
-# Allow frontend dev server (Vite on 5173) to call the API
+app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",   # Vite dev server
-        "http://localhost:4173",   # Vite preview
-        "https://preetihegde-portfolio.pages.dev",
-    ],
-    allow_credentials=True,
+    allow_origins=["*"],   # tighten this later
     allow_methods=["*"],
-    allow_headers=["*"],           # Allows x-session-id header
+    allow_headers=["*"],
 )
 
-app.include_router(router, prefix="/api")
+# ── Health check — Render pings this to confirm the app is alive ──
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
+# ── Your existing routes below ──
+# @app.post("/api/chat")
+# ...
+
+# ── Startup log — tells you the app actually initialised ──
+@app.on_event("startup")
+async def startup():
+    logger.info("✅ Uttara API started successfully")
