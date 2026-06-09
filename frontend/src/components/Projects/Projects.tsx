@@ -92,30 +92,33 @@ export default function Projects({ lang = 'en' }: { lang?: Lang }) {
                       onMouseLeave={e => (e.currentTarget.style.color='var(--text-muted)')}><GHIcon /></a>
                   )}
                   {proj.demo && (
-  typeof proj.demo === "object" && proj.demo.type === "chatbot" ? (
-    <a
-      href="#"
-      onClick={(e) => {
-        e.preventDefault()
-        window.dispatchEvent(new Event("open-chatbot"))
-      }}
-      style={{ color: 'var(--text-muted)', transition: 'color 0.2s' }}
-      onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent-bright)')}
-      onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-muted)')}
-    >
-      <ExtIcon />
-    </a>
-  ) : typeof proj.demo === "string" ? (
-    <a
-      href={proj.demo}
-      style={{ color: 'var(--text-muted)', transition: 'color 0.2s' }}
-      onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent-bright)')}
-      onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-muted)')}
-    >
-      <ExtIcon />
-    </a>
-  ) : null
-)}
+                    typeof proj.demo === "object" &&
+                    proj.demo !== null &&
+                    "type" in proj.demo &&
+                    proj.demo.type === "chatbot" ? (
+                      <a
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          window.dispatchEvent(new Event("open-chatbot"))
+                        }}
+                        style={{ color: 'var(--text-muted)', transition: 'color 0.2s' }}
+                        onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent-bright)')}
+                        onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-muted)')}
+                      >
+                        <ExtIcon />
+                      </a>
+                    ) : typeof proj.demo === "string" ? (
+                      <a
+                        href={proj.demo}
+                        style={{ color: 'var(--text-muted)', transition: 'color 0.2s' }}
+                        onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent-bright)')}
+                        onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-muted)')}
+                      >
+                        <ExtIcon />
+                      </a>
+                    ) : null
+                  )}
                 </div>
               </div>
 
