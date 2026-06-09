@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 interface Message { role: 'user' | 'bot'; text: string; id: string }
 interface ChatHistory { question: string; answer: string }
