@@ -25,7 +25,9 @@ const ANIM: Record<AnimationType, [string, string, string]> = {
 function applyStyle(el: HTMLElement, css: string) {
   css.split(';').forEach(rule => {
     const [k, v] = rule.split(':')
-    if (k && v !== undefined) (el.style as Record<string,string>)[k.trim()] = v.trim()
+    if (k && v !== undefined) {
+      ;(el.style as any)[k.trim()] = v.trim()
+    }
   })
 }
 
