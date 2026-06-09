@@ -89,7 +89,7 @@ AWS-Dienste eingesetzt zur Steigerung der Skalierbarkeit und Ressourcenauslastun
       },
       tech: ["Python", "FastAPI", "LangChain", "RAG Architecture", "Groq", "ChromaDB", "HuggingFace Embeddings", "React"],
       featured: true,
-      github: "#",
+      github: "https://github.com/preetihegde/ai-assisted-portfolio",
       demo:  {type: "chatbot"}
     },
     {
