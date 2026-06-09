@@ -263,7 +263,7 @@ export default function Hero({ lang = 'en' }: { lang?: 'en' | 'de' }) {
 
               {/* "3+ yrs exp" — middle left */}
               <div style={{
-                position:'absolute',top:'42%',right:'-10px',zIndex:10,
+                position:'absolute',top:'42%',right:'-10px',
                 transform:'translateY(-50%)',zIndex:10,
                 background:'rgba(10,8,22,.9)',
                 border:'1px solid rgba(139,92,246,.22)',
