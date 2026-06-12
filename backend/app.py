@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.rest_service import get_embeddings, get_vector_store
+#from src.rest_service import get_embeddings, get_vector_store
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -16,11 +16,12 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
 
+    logger.info("start up..........")
     logger.info("🔥 Loading embeddings...")
-    get_embeddings()
+    #get_embeddings()
 
     logger.info("🔥 Loading vector store...")
-    get_vector_store()
+    #get_vector_store()
 
     logger.info("✅ Uttara ready")
 
