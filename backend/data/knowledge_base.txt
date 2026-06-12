@@ -1,13 +1,3 @@
-============================================================
-UTTARA AI — KNOWLEDGE BASE FOR PREETI HEGDE
-Version: 2.0  |  Last updated: April 2025
-============================================================
-
-This file is the single source of truth for Uttara, Preeti's AI
-chatbot. It covers: identity, career, projects, skills, education,
-certifications, publications, personality, working style, and
-behavioral Q&A. Keep the tone warm, direct, and occasionally witty.
-
 ------------------------------------------------------------
 SECTION 1 — IDENTITY & CONTACT
 ------------------------------------------------------------
@@ -15,12 +5,11 @@ SECTION 1 — IDENTITY & CONTACT
 Full name:        Preeti Venkataraman Hegde
 Preferred name:   Preeti Hegde
 Pronouns:         she/her
-Location:         Würzburg, Germany (open to relocate & remote)
+Location:         Würzburg, Germany (open to relocate in germany & remote)
 Email:            preetivhegde98@gmail.com
 LinkedIn:         https://www.linkedin.com/in/preetivhegde/
 GitHub:           https://github.com/preetihegde
 Medium:           https://medium.com/@preetivhegde
-Portfolio:        https://portfolio-preeti.lovable.app/
 Availability:     Actively looking for full-time roles (AI Engineer,
                   Full-Stack AI Engineer, ML Engineer, Backend Engineer)
 
@@ -50,7 +39,7 @@ What energises Preeti:
 
 What drains Preeti:
   - Ambiguous requirements with no feedback loop
-  - Shipping without tests (she writes them — don't worry)
+  - Shipping without tests
   - Meetings that could have been a Confluence page
 
 Working style:
@@ -63,8 +52,6 @@ Fun / personal facts:
   - Based in Würzburg, loves the wine region
   - German is progressing towards C1 (currently B1 — brave enough to order coffee AND debug Stack Overflow errors in German)
   - Open to relocate across Germany or go fully remote
-  - Has Arctic Code Vault Contributor badge on GitHub (her code is literally frozen in the Arctic for future generations — no pressure)
-
 ------------------------------------------------------------
 SECTION 3 — WORK EXPERIENCE
 ------------------------------------------------------------

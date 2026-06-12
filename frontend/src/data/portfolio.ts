@@ -89,7 +89,7 @@ AWS-Dienste eingesetzt zur Steigerung der Skalierbarkeit und Ressourcenauslastun
       },
       tech: ["Python", "FastAPI", "LangChain", "RAG Architecture", "Groq", "ChromaDB", "HuggingFace Embeddings", "React"],
       featured: true,
-      github: "#",
+      github: "https://github.com/preetihegde/ai-assisted-portfolio",
       demo:  {type: "chatbot"}
     },
     {
@@ -122,8 +122,8 @@ AWS-Dienste eingesetzt zur Steigerung der Skalierbarkeit und Ressourcenauslastun
       demo:   null,
     },
     {
-      id:    "proj3",
-      title: { en: "FileChatAI", de: "FileChatAI" },
+      id:    "proj4",
+      title: { en: "SummariseIt", de: "SummariseIt" },
       description: {
         en: `Summarise It is a lightweight Chrome extension that enables users to summarize selected text directly from any webpage.
               By integrating a Spring Boot backend with the Gemini API, the system provides concise and meaningful summaries in real time, improving content consumption and productivity.`,
