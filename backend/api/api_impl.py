@@ -1,10 +1,18 @@
 from fastapi import APIRouter, Header, HTTPException
 from pydantic import BaseModel
+
 import logging
+logger = logging.getLogger(__name__)
 
+logger.info("Importing uttara_service")
 from src.uttara_service import ask_question
-from  src.ingestion_service import vectorize_cv
 
+logger.info("Imported uttara_service")
+
+logger.info("Importing ingestion_service")
+from src.ingestion_service import vectorize_cv
+
+logger.info("Imported ingestion_service")
 
 logger = logging.getLogger(__name__)
 logger.info("Inside api impl.........")
