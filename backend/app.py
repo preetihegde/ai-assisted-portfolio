@@ -7,8 +7,9 @@
 # #from src.rest_service import get_embeddings, get_vector_store
 import os
 from dotenv import load_dotenv
+from fastapi import FastAPI
 
- load_dotenv()
+load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -60,7 +61,7 @@ logger = logging.getLogger(__name__)
 # except Exception as e:
 #     logger.error(f"❌ Failed to load router: {e}")
 #     raise
-from fastapi import FastAPI
+
 
 app = FastAPI()
 
