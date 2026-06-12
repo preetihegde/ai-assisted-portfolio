@@ -1,7 +1,5 @@
 import logging
 # from contextlib import asynccontextmanager
-
-# from fastapi import FastAPI
 # from fastapi.middleware.cors import CORSMiddleware
 
 # #from src.rest_service import get_embeddings, get_vector_store
@@ -51,16 +49,18 @@ logger = logging.getLogger(__name__)
 #     return {"status": "ok"}
 
 
-# try:
-#     from api.api_impl import router
+try:
+    logger.info("importing api.api_impl")
+    from api.api_impl import router
 
-#     app.include_router(router, prefix="/api")
-#     logger.info("🔥 THIS IS THE FILE BEING EXECUTED")
-#     logger.info("✅ Router loaded successfully")
+    app.include_router(router, prefix="/api")
+    logger.info("🔥 THIS IS THE FILE BEING EXECUTED")
+    logger.info("✅ Router loaded successfully")
 
-# except Exception as e:
-#     logger.error(f"❌ Failed to load router: {e}")
-#     raise
+except Exception as e:
+    logger.error(f"❌ Failed to load router: {e}")
+    raise
+
 
 
 app = FastAPI()
