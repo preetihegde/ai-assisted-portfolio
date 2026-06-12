@@ -52,6 +52,7 @@ try:
     from api.api_impl import router
 
     app.include_router(router, prefix="/api")
+    logger.info("🔥 THIS IS THE FILE BEING EXECUTED")
     logger.info("✅ Router loaded successfully")
 
 except Exception as e:
