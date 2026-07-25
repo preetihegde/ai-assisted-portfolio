@@ -1,162 +1,150 @@
-# from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-# from langchain_core.runnables.history import RunnableWithMessageHistory
-# from langchain_core.output_parsers import StrOutputParser
-# from langchain_core.runnables import RunnablePassthrough, RunnableLambda
-#
-# from src.rest_service import retrieve_vector_data
-# from src.utility_service import (
-#     get_groq_model_parameters,
-#     get_session_history,
-#     format_docs,
-#     get_file_paths,
-#     load_system_prompt
-# )
-#
-#
-# def ask_question(question: str, session_id: str) -> str:
-#     file_paths = get_file_paths()
-#     vector_db_path = file_paths["vector_db_path"]
-#     retrieved_vector_data = retrieve_vector_data(vector_db_path)
-#     llm = get_groq_model_parameters()
-#
-#     retriever = retrieved_vector_data.as_retriever(
-#         search_type="mmr",
-#         search_kwargs={"k": 6, "fetch_k": 15, "lambda_mult": 0.6},
-#     )
-#
-#     print(load_system_prompt())
-#     prompt = ChatPromptTemplate.from_messages(
-#         [
-#             ("system", load_system_prompt()),
-#             MessagesPlaceholder(variable_name="chat_history"),
-#             ("human", "{question}"),
-#         ]
-#     )
-#
-#     # RunnableWithMessageHistory injects chat_history into the chain inputs
-#     # BEFORE the prompt renders — but only if the chain dict passes it through.
-#     # Without explicitly passing chat_history here, the prompt errors with KeyError.
-#
-#
-#     chain = (
-#             {
-#                 "context": RunnableLambda(lambda x: x["question"]) | retriever | format_docs,
-#                 "question": RunnableLambda(lambda x: x["question"]),
-#                 "chat_history": RunnableLambda(lambda x: x.get("chat_history", [])),
-#             }
-#             | prompt
-#             | llm
-#             | StrOutputParser()
-#     )
-#
-#     chain_with_history = RunnableWithMessageHistory(
-#         chain,
-#         get_session_history,
-#         input_messages_key="question",
-#         history_messages_key="chat_history",
-#     )
-#
-#     response = chain_with_history.invoke(
-#         {"question": question},
-#         config={"configurable": {"session_id": session_id}},
-#     )
-#
-#
-#
-#     return response
+"""
+Uttara Service
+
+Main orchestration layer.
+
+Coordinates the complete conversational
+RAG pipeline.
+
+Pipeline
+
+Question
+    ↓
+History
+    ↓
+Question Rewrite
+    ↓
+Retrieve Context
+    ↓
+Build Prompt
+    ↓
+Generate Answer
+    ↓
+Parse Follow-up Options
+    ↓
+Save History
+"""
+
+from __future__ import annotations
+
+import logging
+
+from src.chat_history_service import get_history_service
+from src.retrieval_service import get_retrieval_service
+from src.prompt_service import get_prompt_service
+from src.groq_service import get_llm_service
+from src.question_rewriter import get_question_rewriter
+from src.response_parser import parse_options
+
+logger = logging.getLogger(__name__)
 
 
+class UttaraService:
 
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.runnables.history import RunnableWithMessageHistory
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.runnables import RunnableLambda
+    def __init__(self):
 
-from src.rest_service import get_vector_store
-from src.utility_service import (
-    get_groq_model_parameters,
-    get_session_history,
-    format_docs,
-    load_system_prompt
-)
+        self.history_service = get_history_service()
+        self.question_rewriter = get_question_rewriter()
+        self.retrieval_service = get_retrieval_service()
+        self.prompt_service = get_prompt_service()
+        self.llm_service = get_llm_service()
+
+    def ask_question(
+        self,
+        question: str,
+        session_id: str,
+    ) -> dict:
+
+        logger.info("New question received.")
+
+        # ----------------------------------------------------
+        # Load conversation history
+        # ----------------------------------------------------
+
+        history = self.history_service.get_history(
+            session_id
+        )
+
+        # ----------------------------------------------------
+        # Resolve follow-ups into a standalone question
+        #
+        # Replies like "Yes" or "the first one" carry no meaning
+        # on their own and would embed into noise.
+        # ----------------------------------------------------
+
+        search_question = self.question_rewriter.rewrite(
+            question=question,
+            history=history,
+        )
+
+        # ----------------------------------------------------
+        # Retrieve relevant context
+        # ----------------------------------------------------
+
+        context = self.retrieval_service.retrieve(
+            question=search_question,
+        )
+
+        # ----------------------------------------------------
+        # Build prompt
+        # ----------------------------------------------------
+
+        messages = self.prompt_service.build(
+            context=context,
+            history=history,
+            question=question,
+            standalone_question=search_question,
+        )
+
+        # ----------------------------------------------------
+        # Generate answer
+        # ----------------------------------------------------
+
+        raw_answer = self.llm_service.generate(messages)
+
+        # ----------------------------------------------------
+        # Split the follow-up options marker off the answer
+        # ----------------------------------------------------
+
+        answer, options = parse_options(raw_answer)
+
+        # ----------------------------------------------------
+        # Save conversation
+        #
+        # The cleaned answer is stored so the marker never reaches
+        # the rewriter or a later prompt.
+        # ----------------------------------------------------
+
+        self.history_service.save_message(
+            session_id,
+            "user",
+            question,
+        )
+
+        self.history_service.save_message(
+            session_id,
+            "assistant",
+            answer,
+        )
+
+        logger.info("Question answered successfully.")
+
+        return {
+            "answer": answer,
+            "sources": context,
+            "session_id": session_id,
+            "options": options,
+        }
 
 
-def retrieve_and_debug(question, retriever):
-    docs = retriever.invoke(question)
-
-    print("\n" + "=" * 100)
-    print(f"QUESTION: {question}")
-    print("=" * 100)
-
-    for i, doc in enumerate(docs):
-        print(f"\n===== DOCUMENT {i + 1} =====")
-        print(doc.page_content[:2000])
-
-        if doc.metadata:
-            print("\nMetadata:", doc.metadata)
-
-    print("\n" + "=" * 100)
-
-    return format_docs(docs)
+_uttara_service = None
 
 
-def ask_question(question: str, session_id: str) -> str:
+def get_uttara_service():
 
-    retrieved_vector_data = get_vector_store()
+    global _uttara_service
 
-    llm = get_groq_model_parameters()
+    if _uttara_service is None:
+        _uttara_service = UttaraService()
 
-    retriever = retrieved_vector_data.as_retriever(
-        search_type="mmr",
-        search_kwargs={
-            "k": 8,
-            "fetch_k": 25,
-            "lambda_mult": 0.6
-        },
-    )
-
-    prompt = ChatPromptTemplate.from_messages(
-        [
-            ("system", load_system_prompt()),
-            MessagesPlaceholder(variable_name="chat_history"),
-            ("human", "{question}"),
-        ]
-    )
-
-    chain = (
-            {
-                "context": RunnableLambda(
-                    lambda x: retrieve_and_debug(
-                        x["question"],
-                        retriever
-                    )
-                ),
-                "question": RunnableLambda(
-                    lambda x: x["question"]
-                ),
-                "chat_history": RunnableLambda(
-                    lambda x: x.get("chat_history", [])
-                ),
-            }
-            | prompt
-            | llm
-            | StrOutputParser()
-    )
-
-    chain_with_history = RunnableWithMessageHistory(
-        chain,
-        get_session_history,
-        input_messages_key="question",
-        history_messages_key="chat_history",
-    )
-
-    response = chain_with_history.invoke(
-        {"question": question},
-        config={
-            "configurable": {
-                "session_id": session_id
-            }
-        },
-    )
-
-    return response
+    return _uttara_service

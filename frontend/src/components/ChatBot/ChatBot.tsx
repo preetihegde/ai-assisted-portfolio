@@ -1,6 +1,13 @@
 import { useState, useRef, useEffect } from 'react'
+import ReactMarkdown from "react-markdown";
 
-interface Message { role: 'user' | 'bot'; text: string; id: string }
+interface Message {
+  role: 'user' | 'bot'
+  text: string
+  id: string
+  options?: string[]
+}
+
 interface ChatHistory { question: string; answer: string }
 
 const SESSION_ID = `session_${Date.now()}`
@@ -65,7 +72,14 @@ useEffect(() => {
       })
       const data = await res.json()
       const answer = data.answer || "Hmm, something went wrong. Try again?"
-      setMessages(prev => [...prev, { id: `bot_${Date.now()}`, role: 'bot', text: answer }])
+
+      setMessages(prev => [...prev,  {
+          id: `bot_${Date.now()}`,
+          role: 'bot',
+          text: answer,
+          options: data.options ?? []
+        }
+      ])
       setChatHistory(prev => [...prev, { question, answer }])
     } catch {
       setMessages(prev => [...prev, { id: `err_${Date.now()}`, role: 'bot', text: "Oops! Lost the connection. Try again in a sec." }])
@@ -77,6 +91,10 @@ useEffect(() => {
   function handleSuggestion(s: string) {
     setUsedSugs(prev => new Set([...prev, s]))
     sendMessage(s)
+  }
+
+  function handleOption(option: string) {
+    sendMessage(option)
   }
 
   const visibleSugs = SUGGESTIONS.filter(s => !usedSugs.has(s))
@@ -171,28 +189,207 @@ useEffect(() => {
             }}
           >
             {messages.map(msg => (
-              <div key={msg.id} style={{ display: 'flex', justifyContent: msg.role === 'user' ? 'flex-end' : 'flex-start' }}>
-                <div style={{
-                  maxWidth: '82%', padding: '10px 14px',
-                  borderRadius: msg.role === 'user' ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
-                  // User bubble: rich purple gradient
-                  // Bot bubble: white/translucent with light purple tint
-                  background: msg.role === 'user'
-                    ? 'linear-gradient(135deg, #6d28d9, #8b5cf6)'
-                    : 'rgba(255,255,255,0.72)',
-                  border: msg.role === 'bot' ? '1px solid rgba(139,92,246,0.15)' : 'none',
-                  color: msg.role === 'user' ? '#fff' : '#3b0764',
-                  fontSize: '13px', lineHeight: 1.65,
-                  fontFamily: 'var(--font-body)',
-                  fontWeight: msg.role === 'user' ? 500 : 400,
-                  boxShadow: msg.role === 'user'
-                    ? '0 4px 16px rgba(109,40,217,0.3)'
-                    : '0 2px 8px rgba(139,92,246,0.08)',
-                  backdropFilter: msg.role === 'bot' ? 'blur(8px)' : 'none',
-                }}>
-                  {msg.text}
+                <div
+                    key={msg.id}
+                    style={{
+                      display: "flex",
+                      justifyContent: msg.role === "user" ? "flex-end" : "flex-start",
+                      marginBottom: "14px",
+                    }}
+                >
+                  <div style={{ maxWidth: "78%" }}>
+                    {/* Message Bubble */}
+                    <div
+                        style={{
+                          padding: "14px 16px",
+                          borderRadius:
+                              msg.role === "user"
+                                  ? "18px 18px 6px 18px"
+                                  : "18px 18px 18px 6px",
+
+                          background:
+                              msg.role === "user"
+                                  ? "linear-gradient(135deg,#6d28d9,#8b5cf6)"
+                                  : "rgba(255,255,255,0.72)",
+
+                          border:
+                              msg.role === "bot"
+                                  ? "1px solid rgba(139,92,246,.15)"
+                                  : "none",
+
+                          color: msg.role === "user" ? "#fff" : "#3b0764",
+
+                          fontFamily: "var(--font-body)",
+                          fontSize: "14px",
+                          lineHeight: 1.75,
+
+                          boxShadow:
+                              msg.role === "user"
+                                  ? "0 4px 16px rgba(109,40,217,.3)"
+                                  : "0 2px 8px rgba(139,92,246,.08)",
+
+                          backdropFilter:
+                              msg.role === "bot"
+                                  ? "blur(8px)"
+                                  : "none",
+                        }}
+                    >
+                      {msg.role === "bot" ? (
+                          <ReactMarkdown
+                              components={{
+                                h1: ({ children }) => (
+                                    <h1
+                                        style={{
+                                          fontSize: "20px",
+                                          fontWeight: 700,
+                                          margin: "0 0 14px",
+                                          color: "#4c1d95",
+                                        }}
+                                    >
+                                      {children}
+                                    </h1>
+                                ),
+
+                                h2: ({ children }) => (
+                                    <h2
+                                        style={{
+                                          fontSize: "17px",
+                                          fontWeight: 700,
+                                          margin: "18px 0 10px",
+                                          color: "#5b21b6",
+                                        }}
+                                    >
+                                      {children}
+                                    </h2>
+                                ),
+
+                                h3: ({ children }) => (
+                                    <h3
+                                        style={{
+                                          fontSize: "15px",
+                                          fontWeight: 600,
+                                          margin: "16px 0 8px",
+                                          color: "#6d28d9",
+                                        }}
+                                    >
+                                      {children}
+                                    </h3>
+                                ),
+
+                                p: ({ children }) => (
+                                    <p
+                                        style={{
+                                          margin: "8px 0",
+                                          lineHeight: 1.8,
+                                        }}
+                                    >
+                                      {children}
+                                    </p>
+                                ),
+
+                                ul: ({ children }) => (
+                                    <ul
+                                        style={{
+                                          paddingLeft: "20px",
+                                          margin: "10px 0",
+                                        }}
+                                    >
+                                      {children}
+                                    </ul>
+                                ),
+
+                                li: ({ children }) => (
+                                    <li
+                                        style={{
+                                          marginBottom: "6px",
+                                        }}
+                                    >
+                                      {children}
+                                    </li>
+                                ),
+
+                                strong: ({ children }) => (
+                                    <strong
+                                        style={{
+                                          color: "#4c1d95",
+                                          fontWeight: 700,
+                                        }}
+                                    >
+                                      {children}
+                                    </strong>
+                                ),
+                              }}
+                          >
+                            {msg.text}
+                          </ReactMarkdown>
+                      ) : (
+                          msg.text
+                      )}
+                    </div>
+
+                    {/* Dynamic Chips */}
+                    {msg.role === "bot" &&
+                        msg.options &&
+                        msg.options.length > 0 && (
+                            <div
+                                style={{
+                                  marginTop: "12px",
+                                }}
+                            >
+                              <div
+                                  style={{
+                                    fontSize: "11px",
+                                    color: "#6b7280",
+                                    marginBottom: "8px",
+                                    paddingLeft: "4px",
+                                  }}
+                              >
+                                Continue exploring
+                              </div>
+
+                              <div
+                                  style={{
+                                    display: "flex",
+                                    flexWrap: "wrap",
+                                    gap: "8px",
+                                  }}
+                              >
+                                {msg.options.map(option => (
+                                    <button
+                                        key={option}
+                                        onClick={() => handleOption(option)}
+                                        style={{
+                                          padding: "8px 14px",
+                                          borderRadius: "999px",
+                                          background: "#F4ECFF",
+                                          border: "1px solid #D8B4FE",
+                                          color: "#6D28D9",
+                                          cursor: "pointer",
+                                          fontSize: "12px",
+                                          fontWeight: 500,
+                                          transition: "all .2s ease",
+                                        }}
+                                        onMouseEnter={e => {
+                                          e.currentTarget.style.background = "#6D28D9";
+                                          e.currentTarget.style.color = "#fff";
+                                          e.currentTarget.style.transform =
+                                              "translateY(-1px)";
+                                        }}
+                                        onMouseLeave={e => {
+                                          e.currentTarget.style.background = "#F4ECFF";
+                                          e.currentTarget.style.color = "#6D28D9";
+                                          e.currentTarget.style.transform =
+                                              "translateY(0)";
+                                        }}
+                                    >
+                                      {option}
+                                    </button>
+                                ))}
+                              </div>
+                            </div>
+                        )}
+                  </div>
                 </div>
-              </div>
             ))}
 
             {loading && (
