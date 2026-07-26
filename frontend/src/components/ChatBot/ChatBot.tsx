@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import ReactMarkdown from "react-markdown";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 interface Message {
   role: 'user' | 'bot'
@@ -65,7 +66,7 @@ useEffect(() => {
     setInput('')
     setLoading(true)
     try {
-      const res  = await fetch('/api/chat', {
+      const res  = await fetch(`${backendUrl}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-session-id': SESSION_ID },
         body: JSON.stringify({ question, chat_history: chatHistory })
