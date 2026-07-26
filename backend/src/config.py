@@ -40,3 +40,9 @@ REWRITER_MODEL = os.getenv(
     "REWRITER_MODEL",
     "llama-3.1-8b-instant"
 )
+
+# Small classifier model for first-stage intent routing.
+INTENT_MODEL = os.getenv(
+    "INTENT_MODEL",
+    "llama-3.1-8b-instant"
+)

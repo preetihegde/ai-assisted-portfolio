@@ -28,7 +28,7 @@ class RetrievalService:
         self,
         question: str,
         top_k: int = 7,
-        similarity_threshold: float = 0.52,
+        similarity_threshold: float = 0.55,
     ) -> list[dict]:
         """
         Retrieve the most relevant chunks.

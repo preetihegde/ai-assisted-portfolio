@@ -10,14 +10,25 @@ class PromptService:
 
     def __init__(self):
 
-        prompt_path = (
+        prompt_dir = (
             Path(__file__).parent.parent
             / "prompts"
-            / "system_prompt.md"
         )
 
-        self.system_prompt = prompt_path.read_text(
+        system_prompt_path = prompt_dir / "system_prompt.md"
+        guardrails_path = prompt_dir / "chatbot_guardrails.md"
+
+        system_prompt = system_prompt_path.read_text(
             encoding="utf-8"
+        )
+
+        guardrails = guardrails_path.read_text(
+            encoding="utf-8"
+        )
+
+        self.system_prompt = (
+            f"{system_prompt.strip()}\n\n"
+            f"{guardrails.strip()}"
         )
 
     def build(
