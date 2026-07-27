@@ -6,7 +6,7 @@ Instead of navigating through multiple pages, visitors can simply ask questions 
 
 - Tell me about your master's thesis.
 - What AI projects have you built?
-- Explain your backend development experience.
+- Tell me about your educational qualification.
 - What technologies have you worked with?
 - What is your experience with Retrieval-Augmented Generation (RAG)?
 
