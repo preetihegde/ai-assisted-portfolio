@@ -16,7 +16,7 @@ The application combines a modern **React frontend**, a **FastAPI backend**, and
 
 ## 🚀 Live Demo
 
-🔗 **Portfolio:** *Coming Soon*
+🔗 **Portfolio:** [https://preetihegde-portfolio.pages.dev/](https://preetihegde-portfolio.pages.dev/)
 
 ---
 
