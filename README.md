@@ -279,6 +279,10 @@ GROQ_API_KEY=your_groq_api_key
 SUPABASE_URL=your_supabase_url
 
 SUPABASE_KEY=your_supabase_key
+
+EMBEDDING_PROVIDER=provider_you_want example gemini
+
+EMBEDDING_MODEL=model_of_your_choice example models/text-embedding-004
 ```
 
 ---
